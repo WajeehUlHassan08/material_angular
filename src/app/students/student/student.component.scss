@@ -1,0 +1,27 @@
+.res-width{
+    flex-basis: 100%;
+    padding: 2% 4%;
+}
+
+.res-width > *{
+    width: 100%;
+}
+
+mat-radio-group mat-radio-button{
+    margin-left: 10px;
+}
+
+.flex-container{
+    display: flex;
+    min-height: 30vh;
+    max-height: 50vh;
+    justify-content: space-around;
+}
+
+.btn-row button{
+    margin: 10px 5px;
+}
+
+.fill-remaining-span{
+    width: 80%;
+}

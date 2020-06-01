@@ -1,0 +1,81 @@
+<mat-toolbar>
+    <span>{{service.studentForm.controls['$key'].value? "Edit Student": "Add New Student"}}</span>
+    <span class="fill-remaining-span"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>close</mat-icon></button>
+</mat-toolbar>
+
+
+<form [formGroup]="service.studentForm" (submit)="onSubmit()">
+
+    <div class="flex-container">
+        <div class="res-width">
+            <input type="hidden" formControlName="$key">
+
+            <mat-form-field>
+                <mat-label>Full Name*</mat-label>
+                <input formControlName="fullname" matInput>
+                <mat-error>Full Name is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Email*</mat-label>
+                <input formControlName="email" matInput>
+                <mat-error *ngIf="service.studentForm.controls['email'].errors?.required">Invalid Email</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>CNIC*</mat-label>
+                <input formControlName="cnic" matInput>
+                <mat-error *ngIf="service.studentForm.controls['cnic'].errors?.required">CNIC is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input formControlName="address" matInput>
+                <mat-error *ngIf="service.studentForm.controls['address'].errors?.required"> Address is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Age</mat-label>
+                <input formControlName="age" matInput>
+                <mat-error *ngIf="service.studentForm.controls['age'].errors?.required"> Age is Required</mat-error>
+            </mat-form-field>
+            
+        </div>
+        
+
+        <div class="res-width">
+
+            <label>Gender</label>
+            <mat-radio-group formControlName="gender" color="primary">
+                <mat-radio-button value="1">Male</mat-radio-button>
+                <mat-radio-button value="2">Female</mat-radio-button>
+                <mat-radio-button value="3">Other</mat-radio-button>
+            </mat-radio-group>                
+
+            <mat-form-field>
+                <mat-label>Subject</mat-label>
+                <mat-select formControlName="subjects">
+                    <mat-option *ngFor="let subjects of subjectList" [value]="subjects.id">
+                    {{subjects.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- <mat-form-field>
+                <input formControlName="joindate" matInput [matDatepicker]="picker" placeholder="Joining Date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="service.studentForm.controls['joindate'].errors?.required"> Date is Required</mat-error>
+            </mat-form-field> -->
+            
+            <mat-checkbox formControlName="isgraduated" color="primary">Graduated</mat-checkbox>
+
+            <div class="btn-row">
+                <button type="submit" mat-flat-button color="primary" [disabled]="service.studentForm.invalid">Submit</button>
+                <button mat-flat-button color="warn" (click)="onClear()">Clear</button>
+            </div>
+        </div>
+
+    </div> 
+</form>
